@@ -25,3 +25,33 @@ func main(){
 	http.ListenAndServe(":8080", nil)
 }
 
+
+func handlePatients(w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "application/json")
+
+	if r.Method == http.MethodGet{
+		json.NewEncoder(w).Encode(patients)
+		return
+	}
+
+	if r.Method == http.MethodPost{
+		var p Patient
+		err:= json.NewDecoder(r.Body).Decode(&p)
+		if err!=nil{
+			http.Error(w, "Invalid Input", http.StatusBadRequest)
+		}
+		p.ID = nextID
+		nextID++
+		patients = append(patients, p)
+		json.NewEncoder(w).Encode(p)
+
+		return
+
+	}
+
+	http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+}
+
+
+
+
