@@ -11,7 +11,7 @@ import (
 var DB *sql.DB
 
 func InitDB(){
-	connStr:= "user=postgres password=postgres dbname=patient sslmode=disable"
+	connStr:= "user=postgres password=p dbname=p sslmode=disable"
 	var err error
 
 	DB, err:= sql.Open("postgres", connStr)
