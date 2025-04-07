@@ -2,7 +2,6 @@ package routes
 
 import (
 	"net/http"
-	"patient_refined/handlers"
 	"patients_refined/handlers"
 )
 
