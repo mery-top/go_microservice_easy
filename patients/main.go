@@ -52,6 +52,24 @@ func handlePatients(w http.ResponseWriter, r *http.Request){
 	http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 }
 
+func handlePatientByID( w http.ResponseWriter, r *http.Request){
+	w.Header().Set("Content-Type", "application/json")
+	idStr:= r.URL.Path[len("/patient/"):]
+	id, err:= strconv.Atoi(idStr)
 
+	if err!=nil {
+		http.Error(w, "Invalid Patient ID",http.StatusBadRequest )
+		return
+	}
+
+	for _, p := range patients {
+		if p.ID == id{
+			json.NewEncoder(w).Encode(p)
+			return
+		}
+	}
+
+	http.Error(w, "Patient not Found", http.StatusNotFound)
+}
 
 
