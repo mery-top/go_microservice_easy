@@ -42,8 +42,5 @@ func AddPatient(w http.ResponseWriter, r * http.Request){
 		http.Error(w, "Invalid data", http.StatusBadRequest)
 	}
 
-	p.ID = storage.NextID
-	storage.NextID++
-	storage.Patients = append(storage.Patients, p)
-	json.NewEncoder(w).Encode(p)
+	query:= 'INSERT INTO patients (name, age, disease) VALUES ($1, $2, $3) '
 }
