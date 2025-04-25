@@ -1,1 +1,1 @@
-A Simple Microservice structire using GO
+A Simple Microservice structure using GO
