@@ -1,1 +1,1 @@
-PATIENTS repo using GO
+A Simple Microservice structire using GO
